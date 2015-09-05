@@ -2,7 +2,8 @@ FROM python:3.4
 MAINTAINER Squirrel Developers <dev@squirrel.me>
 COPY . /srv
 WORKDIR /srv
-RUN pip install -r requirements.txt
+RUN python setup.py sdist
+RUN pip install dist/rq-dashboard*.tar.gz
 EXPOSE 9181
-ENTRYPOINT ["python", "-c", "from rq_dashboard.cli import main; main()"]
+ENTRYPOINT ["rq-dashboard"]
 CMD []
